@@ -1,6 +1,6 @@
 const axios = require("axios");
 const API = axios.create({
-  baseURL: "http://localhost:3002",
+  baseURL: "http://localhost:5000",
 });
 
 API.interceptors.request.use((req) => {

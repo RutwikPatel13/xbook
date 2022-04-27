@@ -12,7 +12,7 @@ const {
 const auth = require("../middleware/auth");
 
 router.get("/all", getBooks);
-router.post("/add", auth,upload.single('uploadFile'), createBookAd);
+router.post("/add", auth,upload.single('selectedFile'), createBookAd);
 router.patch("/:id/addWishList", auth, addToWishList);
 router.patch("/:id/sold", auth, updateIsSold);
 router.delete("/:id", auth, deleteaBook);

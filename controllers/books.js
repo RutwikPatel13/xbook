@@ -16,6 +16,8 @@ exports.createBookAd = async (req, res) => {
   const book = req.body;
   const { error } = postBookValidator.validate(req.body);
 
+  console.log(book)
+
   if (!req.userId) return res.status(403).json({ msg: "Unauthorized" });
   try {
     if (error) {
@@ -23,18 +25,20 @@ exports.createBookAd = async (req, res) => {
     }
     const {tags}=req.body
     const { selectedFile } = req.body;
-    const img_url=req.file.location
+    // console.log(req.file)
+    // const img_url=req.file.location
     const noOfPages = Number(book.noOfPages);
     const price = Number(book.price);
     const mrp = Number(book.mrp);
 
     const newBook = new Book({
       ...book,
-      selectedFile:img_url,
       noOfPages: noOfPages,
       price: price,
+      // selectedFile:img_url,
+      selectedFile,
       mrp: mrp,
-      // tags,
+      tags,
       owner: req.userId,
       wishListedBy: [],
       createdAt: new Date().toISOString(),

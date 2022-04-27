@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const Message = require("./models/Message");
 const { sendChatMail } = require("./controllers/users");
 const User = require("./models/User");
+const cors = require('cors');
 
 const PORT = process.env.PORT || 5000;
 dotenv.config({ path: "./config/.env" });
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(compression());
+app.use(cors());
 if (typeof window === "undefined") {
   global.window = {};
 }
@@ -57,11 +59,11 @@ var server = app.listen(PORT, () =>
   )
 );
 
-options = {
+let options = {
   cors: true,
-  origins: "http://localhost:3000",
+  origins: "*",
 };
-const io = require("socket.io")(server, options);
+const io = require("socket.io")(server,options);
 
 io.on("connection", async (socket) => {
   socket.on("disconnect", () => {});

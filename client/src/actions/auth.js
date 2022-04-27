@@ -24,7 +24,7 @@ export const signIn = (formData, history) => async (dispatch) => {
     dispatch({ type: VALID, payload: { msg: "Logged In Successfully" } });
     history.push("/");
   } catch (err) {
-    const data = err.response.data;
+    const data = err;
     dispatch({ type: VALID, payload: { msg: data.msg, type: "error" } });
   }
 };

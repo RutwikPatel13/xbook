@@ -40,7 +40,7 @@ const postBookValidator = joi.object({
   selectedFile: joi.string().required(),
   author: joi.string().required(),
   bookName: joi.string().required(),
-  // tags: joi.array().required(),
+  tags: joi.array().required(),
   noOfPages: joi.number().required(),
   edition: joi.string().required(),
   description: joi.string().required().min(20),
