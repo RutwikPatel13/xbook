@@ -67,8 +67,8 @@ exports.signUp = async (req, res) => {
       { new: true }
     );
     updatedUser.save();
-    const sender = "benclaude69@gmail.com";
-    const subject = "BookXchanger Verify Email";
+    const sender = "xbook1313@gmail.com";
+    const subject = "Xbook Verify Email";
     const body =
       "You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n" +
       "Please click on the following link, or paste this into your browser to complete the process:\n\n" +
@@ -85,7 +85,7 @@ exports.signUp = async (req, res) => {
       requireTLS: true,
       auth: {
         user: sender,
-        pass: "yoyovandu1234",
+        pass: "InfoTE*784%",
       },
     });
 
@@ -166,8 +166,8 @@ exports.verifyEmail = async (req, res) => {
       { new: true }
     );
     updatedUser.save();
-    const sender = "reply.bookxchanger@gmail.com";
-    const subject = "BookXchanger Verify Email";
+    const sender = "xbook1313@gmail.com";
+    const subject = "Xbook Verify Email";
     const body =
       "Please verify your email by clicking the link below:\n\n" +
       req.headers.origin +
@@ -183,7 +183,7 @@ exports.verifyEmail = async (req, res) => {
       requireTLS: true,
       auth: {
         user: sender,
-        pass: "Book@123123",
+        pass: "InfoTE*784%",
       },
     });
 
@@ -256,8 +256,8 @@ exports.sendResetPassEmail = async (req, res) => {
     );
     updatedUser.save();
     console.log(req.headers.origin);
-    const sender = "reply.bookxchanger@gmail.com";
-    const subject = "BookXchanger Password Reset";
+    const sender = "xbook1313@gmail.com";
+    const subject = "Xbook Password Reset";
     const body =
       "You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n" +
       "Please click on the following link, or paste this into your browser to complete the process:\n\n" +
@@ -274,7 +274,7 @@ exports.sendResetPassEmail = async (req, res) => {
       requireTLS: true,
       auth: {
         user: sender,
-        pass: "Book@123123",
+        pass: "InfoTE*784%",
       },
     });
 
@@ -540,7 +540,7 @@ exports.sendMail = async (req, res) => {
       return res
         .status(400)
         .json({ msg: error.details[0].message, severity: "error" });
-    const receiver = "bookxchanger7@gmail.com";
+    const receiver = "xbook1313@gmail.com";
     const message = req.body.message;
     const subject = `Feedback from ${req.body.name}`;
 
@@ -550,13 +550,13 @@ exports.sendMail = async (req, res) => {
       secure: false,
       requireTLS: true,
       auth: {
-        user: "reply.bookxchanger@gmail.com",
-        pass: "Book@123123",
+        user: "xbook1313@gmail.com",
+        pass: "InfoTE*784%",
       },
     });
 
     const mailOptions = {
-      from: "reply.bookxchanger@gmail.com",
+      from: "xbook1313@gmail.com",
       to: receiver,
       subject: subject,
       text: message,
@@ -580,7 +580,7 @@ const sendGoogleMail = async (to, toName, password) => {
   try {
     const receiver = to;
     const message = `
-            Welcome ${toName},Greetings from Bookxchanger!
+            Welcome ${toName},Greetings from Xbook!
             Your password generated is:${password}
             If you want to SignIn manually next time use it.
             You can change this password later by editing your profile.
@@ -593,13 +593,13 @@ const sendGoogleMail = async (to, toName, password) => {
       secure: false,
       requireTLS: true,
       auth: {
-        user: "reply.bookxchanger@gmail.com",
-        pass: "Book@123123",
+        user: "xbook1313@gmail.com",
+        pass: "InfoTE*784%",
       },
     });
 
     const mailOptions = {
-      from: "reply.bookxchanger@gmail.com",
+      from: "xbook1313@gmail.com",
       to: receiver,
       subject: subject,
       text: message,
@@ -628,13 +628,13 @@ exports.sendChatMail = async (to, toName, fromName, url) => {
       secure: false,
       requireTLS: true,
       auth: {
-        user: "reply.bookxchanger@gmail.com",
-        pass: "Book@123123",
+        user: "xbook1313@gmail.com",
+        pass: "InfoTE*784%",
       },
     });
 
     const mailOptions = {
-      from: "reply.bookxchanger@gmail.com",
+      from: "xbook1313@gmail.com",
       to: receiver,
       subject: subject,
       text: message,

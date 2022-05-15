@@ -181,35 +181,9 @@ const Auth = () => {
               </Snackbar>
             ) : null}
             <form className={classes.form} onSubmit={handleSubmit}>
-              <GoogleLogin
-                clientId="466345532266-vvuivtauk0h4b7b1um3sjlgac56sghsb.apps.googleusercontent.com"
-                render={(renderProps) => (
-                  <Box align="center">
-                    <Button
-                      color="primary"
-                      fullWidth
-                      className={classes.customLogin}
-                      onClick={renderProps.onClick}
-                      disabled={renderProps.disabled}
-                      startIcon={<GoogleIcon />}
-                      variant="contained"
-                    >
-                      Sign Up with Google
-                    </Button>
-                  </Box>
-                )}
-                onSuccess={googleSuccess}
-                onFailure={googleError}
-                cookiePolicy="single_host_origin"
-              />
+              
 
-              <Typography
-                component="h1"
-                variant="h5"
-                style={{ textAlign: "center", margin: "10px" }}
-              >
-                OR
-              </Typography>
+              
               <Grid container spacing={2}>
                 {isSignup && (
                   <>
@@ -309,12 +283,7 @@ const Auth = () => {
                       size="large"
                       aria-label="outlined secondary button group"
                     >
-                      <Button
-                        style={{ color: "#e85a4f" }}
-                        onClick={handleClickOpen}
-                      >
-                        Login With One Time Password
-                      </Button>
+                      
                       <Button
                         style={{ color: "#e85a4f" }}
                         onClick={handleClickOpen}
@@ -384,3 +353,28 @@ const Auth = () => {
 };
 
 export default Auth;
+
+/*
+
+<GoogleLogin
+                clientId="466345532266-vvuivtauk0h4b7b1um3sjlgac56sghsb.apps.googleusercontent.com"
+                render={(renderProps) => (
+                  <Box align="center">
+                    <Button
+                      color="primary"
+                      fullWidth
+                      className={classes.customLogin}
+                      onClick={renderProps.onClick}
+                      disabled={renderProps.disabled}
+                      startIcon={<GoogleIcon />}
+                      variant="contained"
+                    >
+                      Sign Up with Google
+                    </Button>
+                  </Box>
+                )}
+                onSuccess={googleSuccess}
+                onFailure={googleError}
+                cookiePolicy="single_host_origin"
+              />
+*/

@@ -1,4 +1,4 @@
 import io from "socket.io-client";
-const ENDPOINT = "https://bookxchanger-app.herokuapp.com";
+const ENDPOINT = "http://localhost:5000";
 
 export const socket = io(ENDPOINT, { autoConnect: false });

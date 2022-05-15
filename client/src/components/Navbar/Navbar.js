@@ -139,9 +139,7 @@ const Navbar = () => {
           <Button variant="contained" component={RouterLink} to="/add" className={menuButton}>
             Sell Books
           </Button>
-          <Button variant="contained" component={RouterLink} to="/all" className={menuButton}>
-            Rent Books
-          </Button>
+          
         </div>
         {user ? (
           <>

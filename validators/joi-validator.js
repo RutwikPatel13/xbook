@@ -43,8 +43,15 @@ const postBookValidator = joi.object({
   tags: joi.array().required(),
   noOfPages: joi.number().required(),
   edition: joi.string().required(),
-  description: joi.string().required().min(20),
+  description: joi.string().required().min(10),
   ownerName: joi.string().required(),
+  edition_year: joi.number().required(),
+  publisher: joi.string().required(),
+  semester: joi.string().required(),
+  first_use: joi.number().required(),
+  isbn: joi.string().required(),
+  university: joi.string().required(),
+  course: joi.string().required(),
 });
 
 const feedBackValidator = joi.object({

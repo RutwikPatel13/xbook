@@ -48,6 +48,13 @@ const initialState = {
   noOfPages: "",
   edition: "",
   description: "",
+  edition_year: "",
+  publisher: "",
+  semester: "",
+  first_use: "",
+  isbn: "",
+  university: "",
+  course: ""
 };
 
 const PostAdForm = () => {
@@ -110,7 +117,7 @@ const PostAdForm = () => {
   };
 
   function getSteps() {
-    return ["Book Info", "Additional Book Info", "Extra Info"];
+    return ["Book Info", "Additional Book Info","Upload Book Images", "Extra Info"];
   }
 
   function getStepContent(stepIndex) {
@@ -187,6 +194,7 @@ const PostAdForm = () => {
                     </Select>
                   </FormControl>
                 </Grid>
+                
               </Paper>
             </Container>
           </Grow>
@@ -202,7 +210,7 @@ const PostAdForm = () => {
                     <TextField
                       name="author"
                       variant="outlined"
-                      label="Name of the Author/Publication"
+                      label="Name of the Author"
                       fullWidth
                       value={bookData.author}
                       onChange={handleChange}
@@ -276,6 +284,64 @@ const PostAdForm = () => {
                       required
                     />
                   </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      name="isbn"
+                      variant="outlined"
+                      label="ISBN Price"
+                      fullWidth
+                      value={bookData.isbn}
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                  <TextField
+                  name="publisher"
+                  variant="outlined"
+                  label="Publisher of Book"
+                  fullWidth
+                  value={bookData.publisher}
+                  onChange={handleChange}
+                  className={classes.textfield}
+                  required
+                />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                <TextField
+                  name="semester"
+                  variant="outlined"
+                  label="Semester of Book"
+                  fullWidth
+                  value={bookData.semester}
+                  onChange={handleChange}
+                  className={classes.textfield}
+                  required
+                />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                <TextField
+                  name="first_use"
+                  variant="outlined"
+                  label="Year Of First Use of Book"
+                  fullWidth
+                  value={bookData.first_use}
+                  onChange={handleChange}
+                  className={classes.textfield}
+                  required
+                />
+                </Grid>
+                </Grid>
+              </Paper>
+            </Container>
+          </Grow>
+        );
+      case 2:
+        return (
+          <Grow in>
+            <Container>
+              <Paper className={classes.paper}>
+                <Grid container spacing={2}>
+                </Grid>
                   <Grid item xs={12} sm={12}>
                     <div className={classes.root1}>
                       <input
@@ -286,14 +352,13 @@ const PostAdForm = () => {
                         type="file"
                         required
                       />
-
                       <label htmlFor="icon-button-file">
                         <Button
                           variant="contained"
                           component="span"
                           className={classes.nextbutton}
                         >
-                          Upload Photos Of Book
+                          Cover Photo Of Book
                         </Button>
                       </label>
                       <input
@@ -304,23 +369,95 @@ const PostAdForm = () => {
                         onChange={addImage}
                         multiple
                       />
+                      
+                      <input
+                        accept="image/*"
+                        className={classes.input}
+                        id="contained-button-file"
+                        multiple
+                        type="file"
+                        required
+                      />
                       <label htmlFor="icon-button-file">
-                        <IconButton
-                          style={{color: "white", backgroundColor: "#1769aa" }}
-                          aria-label="upload picture"
+                        <Button
+                          variant="contained"
                           component="span"
+                          className={classes.nextbutton}
                         >
-                          <PhotoCamera />
-                        </IconButton>
+                          MRP Page Photo Of Book
+                        </Button>
                       </label>
+                      <input
+                        accept="image/*"
+                        className={classes.input}
+                        id="icon-button-file"
+                        type="file"
+                        onChange={addImage}
+                        multiple
+                      />
+
+                      <input
+                        accept="image/*"
+                        className={classes.input}
+                        id="contained-button-file"
+                        multiple
+                        type="file"
+                        required
+                      />
+                      <label htmlFor="icon-button-file">
+                        <Button
+                          variant="contained"
+                          component="span"
+                          className={classes.nextbutton}
+                        >
+                          Random Page 1  Photo Of Book
+                        </Button>
+                      </label>
+                      <input
+                        accept="image/*"
+                        className={classes.input}
+                        id="icon-button-file"
+                        type="file"
+                        onChange={addImage}
+                        multiple
+                      />
+
+                      <input
+                        accept="image/*"
+                        className={classes.input}
+                        id="contained-button-file"
+                        multiple
+                        type="file"
+                        required
+                      />
+                      <label htmlFor="icon-button-file">
+                        <Button
+                          variant="contained"
+                          component="span"
+                          className={classes.nextbutton}
+                        >
+                          Random Page 2 Photo Of Book
+                        </Button>
+                      </label>
+                      <input
+                        accept="image/*"
+                        className={classes.input}
+                        id="icon-button-file"
+                        type="file"
+                        onChange={addImage}
+                        multiple
+                      />
+
+
                     </div>
+                    
                   </Grid>
-                </Grid>
+                  
               </Paper>
             </Container>
           </Grow>
         );
-      case 2:
+        case 3:
         return (
           <Grow in>
             <Container>
@@ -339,7 +476,6 @@ const PostAdForm = () => {
                           tags: e.target.value.split(","),
                         })
                       }
-                      required
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -361,7 +497,36 @@ const PostAdForm = () => {
                       fullWidth
                       value={bookData.edition}
                       onChange={handleChange}
-                      required
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      name="edition_year"
+                      variant="outlined"
+                      label="Edition Year Of Book"
+                      fullWidth
+                      value={bookData.edition_year}
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      name="university"
+                      variant="outlined"
+                      label="University"
+                      fullWidth
+                      value={bookData.university}
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      name="course"
+                      variant="outlined"
+                      label="Course"
+                      fullWidth
+                      value={bookData.course}
+                      onChange={handleChange}
                     />
                   </Grid>
                   <Grid item xs={12} sm={12}>
@@ -374,7 +539,6 @@ const PostAdForm = () => {
                       rows={4}
                       value={bookData.description}
                       onChange={handleChange}
-                      required
                     />
                   </Grid>
                 </Grid>

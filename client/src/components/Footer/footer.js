@@ -42,7 +42,7 @@ const Footer = () => {
                 <InstagramIcon className={classes.Icon} />
               </Link>
               <Link
-                href="https://github.com/sagarmude7/Bookxchanger"
+                href="https://github.com/ShahVandit"
                 target="_blank"
                 color="inherit"
               >
@@ -52,7 +52,7 @@ const Footer = () => {
                 <LinkedInIcon className={classes.Icon} />
               </Link>
               <Link
-                href="mailto:------@gmail.com"// added xbook email id
+                href="mailto:xbook1313@gmail.com"// added xbook email id
                 target="_blank"
                 color="inherit"
               >

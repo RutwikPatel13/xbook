@@ -34,20 +34,20 @@ mongoose.connect(process.env.MONGO_URI, {
 app.get("/", (req, res) => {
   res.send("This is XBook");
 });
-
-// app.use((req, res, next) => {
-//   res.append("Access-Control-Allow-Origin", "http://locahost:3000");
-//   res.append("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH");
-//   res.append(
-//     "Access-Control-Allow-Headers",
-//     "authorization,Content-Type,origin, x-requested-with"
-//   );
-//   res.append("Access-Control-Allow-Credentials", "true");
-//   res.append("Origin", "http://locahost:3000");
-//   res.append("Access-Control-Max-Age", "86400");
-//   next();
-// });
-
+/*
+app.use((req, res, next) => {
+   res.append("Access-Control-Allow-Origin", "http://localhost:3000");
+   res.append("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH");
+   res.append(
+     "Access-Control-Allow-Headers",
+     "authorization,Content-Type,origin, x-requested-with"
+   );
+   res.append("Access-Control-Allow-Credentials", "true");
+   res.append("Origin", "http://localhost:3000");
+   res.append("Access-Control-Max-Age", "86400");
+   next();
+});
+*/
 app.use(express.json({ limit: "80mb", extended: true }));
 app.use(express.urlencoded({ limit: "80mb", extended: true }));
 app.use("/books/", require("./routes/books"));
@@ -110,13 +110,7 @@ io.on("connection", async (socket) => {
           fromName: msg.fromName,
           sentAt: message.sentAt,
         });
-        await io.sockets.in(msg.to).emit("send_msg", {
-          content: message.content,
-          from: message.from,
-          to: message.to,
-          fromName: msg.fromName,
-          sentAt: message.sentAt,
-        });
+        
       } else {
         await io.sockets.in(msg.from).emit("send_msg", {
           content: message.content,
@@ -130,7 +124,7 @@ io.on("connection", async (socket) => {
           receiver.email,
           receiver.name,
           message.fromName,
-          `https://bookxchanger.netlify.app/user/${message.from}`
+          `http://localhost:5000/user/${message.from}`
         );
       }
     } catch (err) {

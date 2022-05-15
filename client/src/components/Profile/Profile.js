@@ -165,7 +165,7 @@ const Profile = () => {
             <Typography className={classes.listNumber}>
               {numberSoldBooks}
             </Typography>
-            <Typography className={classes.listLetter}>Ads Sold</Typography>
+            <Typography className={classes.listLetter}>Book Sold</Typography>
           </div>
         </Container>
         <ThemeProvider theme={outerTheme}>

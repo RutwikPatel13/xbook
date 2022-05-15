@@ -43,7 +43,7 @@ const Dashboard = ({ userId }) => {
           variant="h5"
           style={{ textAlign: "center", paddingTop: "10px" }}
         >
-          Ads Posted By {user.name}
+          Book Posted By {user.name}
         </Typography>
         <hr
           style={{
@@ -84,7 +84,7 @@ const Dashboard = ({ userId }) => {
               <>
                 <Typography align="center" variant="h3">
                   {" "}
-                  No Active Ads{" "}
+                  No Active books to display{" "}
                 </Typography>{" "}
               </>
             )}

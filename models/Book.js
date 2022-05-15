@@ -82,8 +82,62 @@ const BookSchema = mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
+  edition_year: {
+    //edition_year of the book
+    type: String,
+    required: true,
+  },
+  publisher: {
+    //publisher of the book
+    type: String,
+    required: true,
+  },
+  semester: {
+    //semester of the book
+    type: String,
+    required: true,
+  },
+  first_use: {
+    //first_use of the book
+    type: String,
+    required: true,
+  },
+  isbn: {
+    //isbn of the book
+    type: String,
+    required: true,
+  },
+  university: {
+    //university of the book
+    type: String,
+    required: true,
+  },
+  Cover2: {
+    //Cover2 of the book
+    type: String,
+    required: false,
+  },
+  Page1: {
+    //Page1 of the book
+    type: String,
+    required: false,
+  },
+  Page2: {
+    //Page2 of the book
+    type: String,
+    required: false,
+  },
+  course: {
+    //course of the book
+    type: String,
+    required: true,
+  },
 });
 
 const Book = mongoose.model("Book1", BookSchema);
 
 module.exports = Book;
+/*
+
+
+*/

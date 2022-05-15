@@ -166,6 +166,48 @@ const BookInfo = ({ match }) => {
                       {"+"}
                     </span>
                   </li>
+                  <li>
+                    Edition year:{" "}
+                    <span className={classes.name}>
+                      {book.edition_year}
+                    </span>
+                  </li>
+                  <li>
+                  Publisher:{" "}
+                    <span className={classes.name}>
+                      {book.publisher}
+                    </span>
+                  </li>
+                  <li>
+                  Semester:{" "}
+                    <span className={classes.name}>
+                      {book.semester}
+                    </span>
+                  </li>
+                  <li>
+                  First Use:{" "}
+                    <span className={classes.name}>
+                      {book.first_use}
+                    </span>
+                  </li>
+                  <li>
+                    ISBN:{" "}
+                    <span className={classes.name}>
+                      {book.isbn}
+                    </span>
+                  </li>
+                  <li>
+                  University:{" "}
+                    <span className={classes.name}>
+                      {book.university}
+                    </span>
+                  </li>
+                  <li>
+                  Course:{" "}
+                    <span className={classes.name}>
+                      {book.course}
+                    </span>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -210,7 +252,7 @@ const BookInfo = ({ match }) => {
                   />
                 </WhatsappShareButton>
                 <EmailShareButton
-                  subject={"Buy second hand books on Bookxchanger"}
+                  subject={"Buy second hand books on XBook"}
                   body={window.location.href}
                   seperator={
                     "Buy second-hand books by directly contacting the seller on BookFlow. Sell used books and old books at your price."
