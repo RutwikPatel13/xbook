@@ -8,6 +8,7 @@ const {
   updateIsSold,
   deleteaBook,
   editBook,
+  recSystem
 } = require("../controllers/books");
 const auth = require("../middleware/auth");
 
@@ -17,5 +18,6 @@ router.patch("/:id/addWishList", auth, addToWishList);
 router.patch("/:id/sold", auth, updateIsSold);
 router.delete("/:id", auth, deleteaBook);
 router.patch("/:id", auth, editBook);
+router.get('/rec-system',recSystem)
 
 module.exports = router;

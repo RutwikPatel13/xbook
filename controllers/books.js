@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Book = require("../models/Book");
 const User = require("../models/User");
+const spawn= require('child_process').spawn
 
 const { postBookValidator } = require("../validators/joi-validator");
 exports.getBooks = async (req, res) => {
@@ -61,6 +62,29 @@ exports.createBookAd = async (req, res) => {
     return res.status(409).json({ msg: "Something went wrong on Server.." });
   }
 };
+
+exports.recSystem=async(req,res)=>{
+  const {title}=req.body
+
+  
+var pyspawn = spawn(
+  'python', ['./recommendation.py', 'Engineering Drawing']
+);
+
+pyspawn.stdout.on('data',(data)=>{
+
+  var buf = Buffer.from(JSON.stringify(obj));
+  var temp = JSON.parse(buf.toString());
+  console.log(temp)
+  // return res.json({status:"ok",})
+})
+
+
+pyspawn.on('close', (code) => {
+  console.log(`child process exited with code ${code}`);
+});
+
+}
 
 exports.addToWishList = async (req, res) => {
   const { id } = req.params;
