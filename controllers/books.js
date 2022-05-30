@@ -8,26 +8,12 @@ const spawn= require('child_process').spawn
 
 const { postBookValidator } = require("../validators/joi-validator");
 exports.getBooks = async (req, res) => {
-  const {title}=req.body
-
-  var process = spawn('python',["recommendation.py",title] );
-  
-  process.stdout.on('data', (data)=> {
-      obj=[]
-      var books=data.toString()
-      var x=books.split(',')
-      x.pop()
-      iter=0
-      x.forEach(async(book)=>{
-        const book1=await Book.findOne({_id:book})
-        console.log(book1)
-        obj.push(book1)
-        iter+=1
-        if(iter==5){
-          return res.json({book:obj})
-        }
-      })
-  } )
+  try {
+    const books = await Book.find();
+    return res.status(200).json(books);
+  } catch (err) {
+    return res.status(404).json({ msg: "No Book Found" });
+  }
 };
 
 exports.createBookAd = async (req, res) => {

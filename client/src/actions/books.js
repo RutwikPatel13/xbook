@@ -37,6 +37,13 @@ export const addToWishList = (id) => async (dispatch) => {
   } catch (error) {}
 };
 
+export const recSystem = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.recSystem(id);
+    dispatch({ type: ADD_FAV, payload: data });
+  } catch (error) {}
+};
+
 export const showBookInfo = (bookId) => async (dispatch) => {
   try {
   } catch (error) {}

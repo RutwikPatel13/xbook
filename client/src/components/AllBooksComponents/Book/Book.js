@@ -19,7 +19,7 @@ import { addToWishList } from "../../../actions/books";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { VALID } from "../../../constants/actions";
-
+import {recSystem} from "../../../api/index.js"
 const Book = ({book }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -46,7 +46,10 @@ const Book = ({book }) => {
     }
   };
 
+  
+
   const getBook = () => {
+    dispatch(recSystem(book._id));
     history.push(`/all/book/${book._id}`);
   };
 
@@ -114,7 +117,7 @@ const Book = ({book }) => {
               </Typography>
             </CardActions>
 
-            <Button variant="outlined" onClick={getBook} className={classes.button}>
+            <Button variant="outlined" onClick={getBook}  className={classes.button}>
               Book Details
             </Button>
           </Card>
