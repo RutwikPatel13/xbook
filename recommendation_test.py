@@ -25,12 +25,6 @@ print(db.list_collection_names())
 #print(bookss)
 
 
-#Vandit 
-#run this file and see the output its a dictionary after dictionary
-#Convert this to 2D array called df
-#rest is same as in recommendation.py
-
-
 mydb, mydb_name, instance_col = client, db, books
 # make an API call to the MongoDB server
 cursor = instance_col.find()
@@ -57,7 +51,7 @@ for num, doc in enumerate(mongo_df):
 
 import sys
 
-#Title=sys.argv[1]
+Title=sys.argv[1]
 import numpy as np
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
@@ -85,7 +79,7 @@ cm=CountVectorizer().fit_transform(df['combined'])
 
 #Creating Cosine Similarity Matrix
 cs=cosine_similarity(cm)
-Title='Engineering Drawing'
+#Title='Engineering Drawing'
 
 unique_id = df[df.bookName==Title]['_id'].values[0]
 print(unique_id)
@@ -123,4 +117,4 @@ for item in sorted_scores:
   if j>=5:
     break
 
-print(ids)
+print(ids) # stores id of 5 most similar books 
