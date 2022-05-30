@@ -67,9 +67,9 @@ exports.createBookAd = async (req, res) => {
 };
 
 exports.recSystem=async(req,res)=>{
-  const {title}=req.body
+  const {id}=req.params
 
-  var process = spawn('python',["recommendation.py",title] );
+  var process = spawn('python',["recommendation.py",id] );
   
   process.stdout.on('data', (data)=> {
       obj=[]
@@ -79,7 +79,6 @@ exports.recSystem=async(req,res)=>{
       iter=0
       x.forEach(async(book)=>{
         const book1=await Book.findOne({_id:book})
-        console.log(book1)
         obj.push(book1)
         iter+=1
         if(iter==5){
