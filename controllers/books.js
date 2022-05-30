@@ -1,3 +1,6 @@
+require('dotenv').config()
+const { rmSync } = require('fs');
+const { object } = require('joi');
 const mongoose = require("mongoose");
 const Book = require("../models/Book");
 const User = require("../models/User");
@@ -5,12 +8,26 @@ const spawn= require('child_process').spawn
 
 const { postBookValidator } = require("../validators/joi-validator");
 exports.getBooks = async (req, res) => {
-  try {
-    const books = await Book.find();
-    return res.status(200).json(books);
-  } catch (err) {
-    return res.status(404).json({ msg: "No Book Found" });
-  }
+  const {title}=req.body
+
+  var process = spawn('python',["recommendation.py",title] );
+  
+  process.stdout.on('data', (data)=> {
+      obj=[]
+      var books=data.toString()
+      var x=books.split(',')
+      x.pop()
+      iter=0
+      x.forEach(async(book)=>{
+        const book1=await Book.findOne({_id:book})
+        console.log(book1)
+        obj.push(book1)
+        iter+=1
+        if(iter==5){
+          return res.json({book:obj})
+        }
+      })
+  } )
 };
 
 exports.createBookAd = async (req, res) => {
@@ -66,25 +83,26 @@ exports.createBookAd = async (req, res) => {
 exports.recSystem=async(req,res)=>{
   const {title}=req.body
 
+  var process = spawn('python',["recommendation.py",title] );
   
-var pyspawn = spawn(
-  'python', ['./recommendation.py', 'Engineering Drawing']
-);
-
-pyspawn.stdout.on('data',(data)=>{
-
-  var buf = Buffer.from(JSON.stringify(obj));
-  var temp = JSON.parse(buf.toString());
-  console.log(temp)
-  // return res.json({status:"ok",})
-})
-
-
-pyspawn.on('close', (code) => {
-  console.log(`child process exited with code ${code}`);
-});
-
+  process.stdout.on('data', (data)=> {
+      obj=[]
+      var books=data.toString()
+      var x=books.split(',')
+      x.pop()
+      iter=0
+      x.forEach(async(book)=>{
+        const book1=await Book.findOne({_id:book})
+        console.log(book1)
+        obj.push(book1)
+        iter+=1
+        if(iter==5){
+          return res.json({book:obj})
+        }
+      })
+  } )  // return res.json({status:"ok",})
 }
+
 
 exports.addToWishList = async (req, res) => {
   const { id } = req.params;
