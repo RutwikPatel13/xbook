@@ -36,7 +36,7 @@ for num, doc in enumerate(mongo_df):
 
 import sys
 
-Title=sys.argv[1]
+# Title=sys.argv[1]
 import numpy as np
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
@@ -63,7 +63,7 @@ cm=CountVectorizer().fit_transform(df['combined'])
 
 #Creating Cosine Similarity Matrix
 cs=cosine_similarity(cm)
-# Title='Engineering Drawing'
+Title='Engineering Drawing'
 
 unique_id = df[df.bookName==Title]['_id'].values[0]
 # print(unique_id)
@@ -78,7 +78,7 @@ book_title=[]
 pub=[]
 sem=[]
 author=[]
-ids=''
+ids=[]
 final_obj={}
 for item in sorted_scores:
   if df['_id'][item[0]]==unique_id:
@@ -89,7 +89,7 @@ for item in sorted_scores:
     sem.append(df['semester'][item[0]])
     author.append(df['author'][item[0]])
     
-    ids+=df['_id'][item[0]]+','
+    ids.append(df['_id'][item[0]])
 
     
   except:
@@ -98,5 +98,4 @@ for item in sorted_scores:
   j=j+1
   if j>=5:
     break
-
-print(ids) # stores id of 5 most similar books
+print(ids)
