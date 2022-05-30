@@ -98,4 +98,5 @@ for item in sorted_scores:
   j=j+1
   if j>=5:
     break
-print(ids)
+
+print(ids) # stores id of 5 most similar books

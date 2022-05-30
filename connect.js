@@ -1,4 +1,4 @@
-const spawn= require('child_process').spawn
+const spawn = require('child_process').spawn
 
 var pyspawn = spawn(
     'python', ['./recommendation.py', 'Engineering Drawing']

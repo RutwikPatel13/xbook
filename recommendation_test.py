@@ -83,12 +83,14 @@ cs=cosine_similarity(cm)
 
 unique_id = df[df.bookName==Title]['_id'].values[0]
 print(unique_id)
-book_id=df.loc[df.bookName==Title].index[0]
+
+book_id=df.loc[df._id==unique_id].index[0]
 print(book_id)
 scores=list(enumerate(cs[book_id]))
 
 sorted_scores=sorted(scores,key=lambda x:x[1],reverse=True)
 print(sorted_scores)
+
 j=0
 print("The 5 most similar books to "+Title+"are :\n")
 book_title=[]
