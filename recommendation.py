@@ -1,6 +1,6 @@
 import sys
 
-Title=sys.argv[1]
+#Title=sys.argv[1]
 import numpy as np
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
@@ -31,7 +31,7 @@ cm=CountVectorizer().fit_transform(df['Combined'])
 
 #Creating Cosine Similarity Matrix
 cs=cosine_similarity(cm)
-# Title='Engineering Drawing'
+Title='Engineering Drawing'
 
 book_id=df[df.Title==Title]['Book Sr no.'].values[0]
 

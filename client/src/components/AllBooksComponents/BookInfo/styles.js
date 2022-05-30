@@ -109,8 +109,8 @@ const styles = makeStyles((theme) => ({
     color: "black",
     position: "relative",
     paddingTop: "20px",
-    paddingLeft: "6%",
-    paddingRight: "6%",
+    paddingLeft: "2%",
+    paddingRight: "2%",
     paddingBottom: "20px",
     background: "#cfe2f3",
     width: "100%",
@@ -134,8 +134,8 @@ const styles = makeStyles((theme) => ({
   },
   bookDetails: {
     display: "inline",
-    width: "900px",
-    marginRight: "10px",
+    width: "1000px",
+    marginRight: "0px",
     backgroundColor: "",
     padding: "1px",
     borderRadius: "5px",
@@ -159,14 +159,22 @@ const styles = makeStyles((theme) => ({
       padding: "20px",
     },
   },
+  timeline: {
+    color:"green",
+    
+  },
+  timeline2: {
+    color:"blue",
+    
+  },
 
   list: {
-    lineHeight: "40px",
-    font: "18px Sans-serif ",
+    lineHeight: "35px",
+    font: "16px Sans-serif ",
     width: "auto",
     display: "inline-block",
 
-    padding: "20px",
+    padding: "15px",
     marginTop: "0px",
     marginBottom: "75px",
     "@media (max-width : 700px)": {
@@ -198,6 +206,13 @@ const styles = makeStyles((theme) => ({
 
   name: {
     color: "#1769aa",
+    "&:hover": {
+      color: "#34495e",
+    },
+  },
+
+  name2: {
+    color: "red",
     "&:hover": {
       color: "#34495e",
     },
@@ -263,6 +278,8 @@ const styles = makeStyles((theme) => ({
       paddingRight: "10px",
     },
   },
+
+ 
 }));
 
 export default styles;

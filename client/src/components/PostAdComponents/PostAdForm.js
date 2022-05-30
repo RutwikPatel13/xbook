@@ -70,7 +70,7 @@ const PostAdForm = () => {
     const files = [...e.target.files];
     const imageData = await compress.compress(files, {
       size: 0.2,
-      quality: 0.5,
+      quality: 0.9,
     });
     const imageFile = imageData[0].prefix + imageData[0].data;
     setBookData({ ...bookData, selectedFile: imageFile });
@@ -615,6 +615,8 @@ const PostAdForm = () => {
       1: <LibraryBooksOutlinedIcon />,
       2: <AddToPhotosOutlinedIcon />,
       3: <AssignmentOutlinedIcon />,
+      4: <AddToPhotosOutlinedIcon />,
+      
     };
     return (
       <div

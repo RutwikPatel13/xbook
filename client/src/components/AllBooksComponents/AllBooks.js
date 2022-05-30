@@ -133,7 +133,7 @@ const AllBooks = () => {
 
         <div
           className={classes.maincontainer}
-          style={{ backgroundColor: "#eae7dc" }}
+          style={{ backgroundColor: "#" }}
         >
           <div className={classes.sortby}>
             <hr

@@ -14,13 +14,18 @@ import {
 import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
-import { Grid, Container, Typography, Link } from "@material-ui/core";
+import { Container, Typography, Link } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Error404 from "../../ErrorComponent/Error404";
 import { GET_BOOK } from "../../../constants/actions";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Book from "../../AllBooksComponents/Book/Book";
+import DisplayImagesCarousel from "../../AllBooksComponents/BookInfo/DisplayImagesCarousel";
+import TimeLine from "./TimeLine.js";
+import Grid from '@material-ui/core/Grid';
+import { Stack } from '@mui/material';
+
 
 const BookInfo = ({ match }) => {
   const classes = useStyles();
@@ -32,7 +37,7 @@ const BookInfo = ({ match }) => {
   const [found] = useState(books.find((bk) => bk._id === bookId) !== undefined);
   const [contact_URL, setContact_URL] = useState("/auth");
   const localUser = JSON.parse(localStorage.getItem("profile"));
-
+  
   useEffect(() => {
     localUser ? setContact_URL(`/user/${book.owner}`) : setContact_URL("/auth");
   });
@@ -72,7 +77,25 @@ const BookInfo = ({ match }) => {
       items: 1,
     },
   };
-
+  const displayImages = [
+    {
+      label: "Cover",
+      imgPath: book.selectedFile
+    },
+    {
+      label: "Cover2",
+      imgPath: book.Cover2    
+    },
+    {
+      label: "page1",
+      imgPath:book.Page1
+    },
+    {
+      label: "page2",
+      imgPath:book.Page2
+    }
+  ];
+  
   return found ? (
     <>
       <div className={classes.root}>
@@ -85,7 +108,7 @@ const BookInfo = ({ match }) => {
 
           <Typography className={classes.bottomLeft}>
             <div className={classes.bookMain}>
-              <Typography className={classes.branch}>{book.branch}</Typography>{" "}
+              
               {book.bookName}
               <div className={classes.edition}>
                 {" ("}
@@ -110,106 +133,126 @@ const BookInfo = ({ match }) => {
         <div className={classes.middleContainer}>
           <div className={classes.bookDetails}>
             <div className={classes.imgAndInfo}>
-              <div>
-                <img
-                  className={classes.bookImage}
-                  src={book.selectedFile}
-                  alt="Book"
-                  loading="lazy"
-                />
-              </div>
-              <div>
-                <ul style={{ listStyleType: "none" }} className={classes.list}>
-                  <li>
-                    Name: <span className={classes.name}>{book.bookName}</span>
-                  </li>
+            <Grid container spacing={10}>
+              <Grid item xs={4}>
+                <Stack spacing={2}>
+                  <div className={classes.bookImage}>
+                      <DisplayImagesCarousel 
+                      cover1={book.selectedFile} 
+                      cover2={book.Cover2}
+                      page1={book.Page1}
+                      page2={book.Page2} 
+                      />    
+                    </div>
+                    <div  >
+                    <TimeLine ></TimeLine>
+                    </div>
+                </Stack>               
+              </Grid>
+              <Grid item xs={8}>
 
-                  <li>
-                    Subject:{" "}
-                    <span className={classes.name}>{book.subject}</span>
-                  </li>
+                <div>
+                  <ul style={{ listStyleType: "none" }} className={classes.list}>
+                    <li>
+                      Name: <span className={classes.name2}>{book.bookName}</span>
+                    </li>
 
-                  <li>
-                    Branch: <span className={classes.name}>{book.branch}</span>
-                  </li>
-                  <li>
-                    Edition:{" "}
-                    <span className={classes.name}>
-                      {book.edition}
-                      {"th"}
-                    </span>
-                  </li>
-                  <li>
-                    Price{"(₹)"}:{" "}
-                    <span className={classes.name}>
-                      {book.price}
-                      {" ("}
-                      {book.priceType}
-                      {")"}
-                    </span>
-                  </li>
-                  <li>
-                    Condition:{" "}
-                    <span className={classes.name}>{book.condition}</span>
-                  </li>
-                  <li>
-                    MRP{"(₹)"}: <span className={classes.name}>{book.mrp}</span>
-                  </li>
-                  <li>
-                    Author/Publication:{" "}
-                    <span className={classes.name}>{book.author}</span>
-                  </li>
-                  <li>
-                    Number of pages:{" "}
-                    <span className={classes.name}>
-                      {book.noOfPages}
-                      {"+"}
-                    </span>
-                  </li>
-                  <li>
-                    Edition year:{" "}
-                    <span className={classes.name}>
-                      {book.edition_year}
-                    </span>
-                  </li>
-                  <li>
-                  Publisher:{" "}
-                    <span className={classes.name}>
-                      {book.publisher}
-                    </span>
-                  </li>
-                  <li>
-                  Semester:{" "}
-                    <span className={classes.name}>
-                      {book.semester}
-                    </span>
-                  </li>
-                  <li>
-                  First Use:{" "}
-                    <span className={classes.name}>
-                      {book.first_use}
-                    </span>
-                  </li>
-                  <li>
-                    ISBN:{" "}
-                    <span className={classes.name}>
-                      {book.isbn}
-                    </span>
-                  </li>
-                  <li>
-                  University:{" "}
-                    <span className={classes.name}>
-                      {book.university}
-                    </span>
-                  </li>
-                  <li>
-                  Course:{" "}
-                    <span className={classes.name}>
-                      {book.course}
-                    </span>
-                  </li>
-                </ul>
-              </div>
+                    <li>
+                      Subject:{" "}
+                      <span className={classes.name}>{book.subject}</span>
+                    </li>
+                    <li>
+                    Semester:{" "}
+                      <span className={classes.name}>
+                        {book.semester}
+                      </span>
+                    </li>
+                    <li>
+                      Branch: <span className={classes.name}>{book.branch}</span>
+                    </li>
+                    
+                    <li>
+                      MRP{"(₹)"}:{" "}
+                      <span className={classes.name}>
+                        {book.price}
+                        
+                      </span>
+                    </li>
+
+                    <li>
+                      Discounted Price{"(₹)"}:{" "}
+                      <span className={classes.name2}>
+                        {book.price}
+                        {" ("}
+                        {book.priceType}
+                        {")"}
+                      </span>
+                    </li>
+
+                    <li>
+                      Condition:{" "}
+                      <span className={classes.name2}>{book.condition}</span>
+                    </li>
+                    <li>
+                      Author/Publication:{" "}
+                      <span className={classes.name}>{book.author}</span>
+                    </li>
+                    <li>
+                      Edition:{" "}
+                      <span className={classes.name}>
+                        {book.edition}
+                        {"th"}
+                      </span>
+                    </li>
+                    <li>
+                      Edition year:{" "}
+                      <span className={classes.name}>
+                        {book.edition_year}
+                      </span>
+                    </li>
+                    <li>
+                      Number of pages:{" "}
+                      <span className={classes.name}>
+                        {book.noOfPages}
+                        {"+"}
+                      </span>
+                    </li>
+                    <li>
+                    Publisher:{" "}
+                      <span className={classes.name}>
+                        {book.publisher}
+                      </span>
+                    </li>
+                    
+                    <li>
+                    First Use:{" "}
+                      <span className={classes.name2}><b>
+                        {book.first_use}
+                        </b></span>
+                    </li>
+                    <li>
+                      ISBN:{" "}
+                      <span className={classes.name}>
+                        {book.isbn}
+                      </span>
+                    </li>
+                    <li>
+                    University:{" "}
+                      <span className={classes.name}>
+                        {book.university}
+                      </span>
+                    </li>
+                    <li>
+                    Course:{" "}
+                      <span className={classes.name}>
+                        {book.course}
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </Grid>
+            </Grid>
+                
             </div>
 
             <div className={classes.bookDescription}>

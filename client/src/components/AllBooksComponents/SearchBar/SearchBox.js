@@ -133,7 +133,7 @@ const SearchBox = () => {
       </div>
       <div
         className={classes.middleContainer}
-        style={{ backgroundColor: "#eae7dc" }}
+        style={{ backgroundColor: "#" }}
       >
         <div className={classes.searchboxes} noValidate autoComplete="off">
           <div>
