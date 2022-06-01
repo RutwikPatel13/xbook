@@ -132,6 +132,7 @@ const BookSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+
 });
 
 const Book = mongoose.model("Book1", BookSchema);

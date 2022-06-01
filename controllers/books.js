@@ -10,6 +10,7 @@ const { postBookValidator } = require("../validators/joi-validator");
 exports.getBooks = async (req, res) => {
   try {
     const books = await Book.find();
+    
     return res.status(200).json(books);
   } catch (err) {
     return res.status(404).json({ msg: "No Book Found" });
@@ -66,15 +67,18 @@ exports.createBookAd = async (req, res) => {
   }
 };
 
-exports.recSystem=async(req,res)=>{
+exports.recSystem = async(req,res)=>{
   const {id}=req.params
 
   var process = spawn('python',["recommendation.py",id] );
   
   process.stdout.on('data', (data)=> {
       obj=[]
-      var books=data.toString()
-      var x=books.split(',')
+      books=''
+      x=[]
+      books+=data.toString()
+      return res.json(books)
+      x=books.split(',')
       x.pop()
       iter=0
       x.forEach(async(book)=>{
@@ -91,32 +95,34 @@ exports.recSystem=async(req,res)=>{
 
 exports.addToWishList = async (req, res) => {
   const { id } = req.params;
-
-  if (!req.userId) return res.status(403).json({ msg: "Unauthorized access" });
-
-  if (!mongoose.Types.ObjectId.isValid(id))
-    return res.status(404).json({ msg: `No Book with id:${id}` });
-
-  try {
-    const book = await Book.findById(id);
-    const userId = book.wishListedBy.findIndex(
-      (id) => id === String(req.userId)
-    );
-
-    if (userId == -1) {
-      book.wishListedBy.push(req.userId);
-    } else {
-      book.wishListedBy = book.wishListedBy.filter(
-        (id) => id !== String(req.userId)
-      );
-    }
-
-    const updatedBook = await Book.findByIdAndUpdate(id, book, { new: true });
-    return res.json(updatedBook);
-  } catch (err) {
-    return res.status(500).json({ msg: "Something went wrong on Server.." });
-  }
-};
+  console.log("id", id)
+  var process = spawn('python',["recommendation.py ",id] );
+  
+  process.stdout.on('data', (data)=> {
+    obj=[]
+    books=''
+    x=[]
+    books+=data.toString()
+    x=books.split(',')
+    x.pop()
+    iter=0
+    //return res.json(books)
+    console.log("x", x)
+    
+    x.forEach(async(book2)=>{
+      const book1 = await Book.findById(book2)
+      
+      obj.push(book1)
+      
+      iter+=1
+      if(iter==5){
+        console.log("obj", obj)
+        return res.json(obj)
+      }
+    })
+    
+} )  // return res.json({status:"ok",})
+}
 
 exports.updateIsSold = async (req, res) => {
   try {

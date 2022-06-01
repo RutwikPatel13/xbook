@@ -65,9 +65,9 @@ cm=CountVectorizer().fit_transform(df['combined'])
 cs=cosine_similarity(cm)
 # Title='Engineering Drawing'
 
-unique_id = Title
+unique_id = df[df.bookName==Title]['_id'].values[0]
 # print(unique_id)
-book_id=df.loc[df._id==Title].index[0]
+book_id=df.loc[df.bookName==Title].index[0]
 # print(book_id)
 scores=list(enumerate(cs[book_id]))
 

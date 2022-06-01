@@ -21,7 +21,7 @@ const createBookAd = (formData) => API.post(`${urlBooks}/add`, formData);
 const addToWishList = (id) => API.patch(`${urlBooks}/${id}/addWishList`, id);
 
 const showBookInfo = (bookId) => API.get(`${urlBooks}/book/${bookId}`);
-const recSystem = (bookId) => API.get(`${urlBooks}/rec-system/${bookId}`);
+
 const updatedIsSold = (bookId) => API.patch(`${urlBooks}/${bookId}/sold`);
 
 const deleteaBook = (bookId) => API.delete(`${urlBooks}/${bookId}`);
@@ -59,7 +59,6 @@ const deleteaBookFromWish = (book_id) => API.delete(`${urlUsers}/${book_id}`);
 module.exports = {
   fetchBooks,
   createBookAd,
-  recSystem,
   signUp,
   signIn,
   googleFacebookSignIn,

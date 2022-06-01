@@ -7,6 +7,7 @@ import {
   UPDATE_BOOKS,
   VALID,
   DEL_BOOK_WISH,
+  REC_SYSTEM,
 } from "../constants/actions";
 const api = require("../api/index");
 
@@ -37,12 +38,6 @@ export const addToWishList = (id) => async (dispatch) => {
   } catch (error) {}
 };
 
-export const recSystem = (id) => async (dispatch) => {
-  try {
-    const { data } = await api.recSystem(id);
-    dispatch({ type: ADD_FAV, payload: data });
-  } catch (error) {}
-};
 
 export const showBookInfo = (bookId) => async (dispatch) => {
   try {

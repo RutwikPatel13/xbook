@@ -54,7 +54,7 @@ const initialState = {
   first_use: "",
   isbn: "",
   university: "",
-  course: ""
+  course: "",
 };
 
 const PostAdForm = () => {

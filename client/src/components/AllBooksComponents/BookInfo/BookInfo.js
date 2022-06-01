@@ -33,15 +33,17 @@ const BookInfo = ({ match }) => {
   const dispatch = useDispatch();
   const books = useSelector((state) => state.books);
   const book = useSelector((state) => state.book);
+
+  const filterbooks = useSelector((state) => state.obj);
+  
   const bookId = match.params.bookId;
   const [found] = useState(books.find((bk) => bk._id === bookId) !== undefined);
   const [contact_URL, setContact_URL] = useState("/auth");
   const localUser = JSON.parse(localStorage.getItem("profile"));
-  
   useEffect(() => {
     localUser ? setContact_URL(`/user/${book.owner}`) : setContact_URL("/auth");
   });
-
+  const condition2 = "ok"
   useEffect(() => {
     if (books.find((bk) => bk._id === bookId) !== undefined) {
       dispatch({
@@ -51,13 +53,8 @@ const BookInfo = ({ match }) => {
     }
   }, [dispatch]);
 
-  const allBooks = useSelector((state) => state.books);
-  const filterbooks = allBooks.filter(
-    (books) =>
-      books.isSold === false &&
-      books.branch === book.branch &&
-      books.owner !== book.owner
-  );
+  
+  
 
   const responsive = {
     superLargeDesktop: {
@@ -121,7 +118,8 @@ const BookInfo = ({ match }) => {
               </div>
             </div>
             <div className={classes.price}>
-              {book.price}
+              {
+              (book.price*60)/100}
               {"₹ ("}
               {book.priceType}
 
@@ -180,11 +178,32 @@ const BookInfo = ({ match }) => {
                     </li>
 
                     <li>
+                      Condition Predicted:{" "}
+                      <span className={classes.name2}>
+                        {book.conditionOfBookPredicted}
+                        {book.conditionOfBookPredicted==''&& condition2
+                        }
+                        </span>
+                    </li>
+
+                    <li>
                       Discounted Price{"(₹)"}:{" "}
                       <span className={classes.name2}>
-                        {book.price}
+                        {book.conditionOfBookPredicted=='excellent'&&(book.price*70)/100
+                        }
+                        {book.conditionOfBookPredicted=='ok'&&(book.price*60)/100
+                        
+                        } 
+                        {book.conditionOfBookPredicted=='good'&&(book.price*50)/100
+                        }
+                        {book.conditionOfBookPredicted=='bad'&&(book.price*40)/100
+                        }
+                        {book.conditionOfBookPredicted==''&&(book.price*60)/100
+                        }
+                        
                         {" ("}
                         {book.priceType}
+                                              
                         {")"}
                       </span>
                     </li>
@@ -440,11 +459,7 @@ const BookInfo = ({ match }) => {
             margin: "0px auto",
           }}
         />
-        {filterbooks.length === 0 ? (
-          <Typography align="center" variant="h5" style={{ padding: "50px " }}>
-            No similar book found
-          </Typography>
-        ) : (
+        {(
           <div
             style={{
               padding: "20px 10px",
@@ -460,13 +475,17 @@ const BookInfo = ({ match }) => {
               autoPlay={true}
               autoPlaySpeed={6000}
             >
-              {filterbooks.map((book) => (
-                <Grid>
-                  <Container>
-                    <Book key={book._id} book={book} />
-                  </Container>
-                </Grid>
-              ))}
+              {
+              filterbooks.map((book) => {
+              <Grid>
+                <Container>
+                  <Book key={book._id} book={book} />
+                </Container>
+              </Grid>
+
+              })
+              
+              }
             </Carousel>
           </div>
         )}

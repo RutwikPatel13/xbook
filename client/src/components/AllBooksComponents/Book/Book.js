@@ -26,30 +26,14 @@ const Book = ({book }) => {
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem("profile"));
   const [fav, setFav] = useState(false);
-  useEffect(() => {
-    if (book){
-      setFav(book?.wishListedBy?.find((id) => id === user?.profile?.id));
-      
-    }
-  }, []);
+  
   const addtofavourite = () => {
-    if (user) {
-      console.log("Adding To Favorites..");
-      fav ? setFav(false) : setFav(true);
-      dispatch(addToWishList(book._id));
-    } else {
-      dispatch({
-        type: VALID,
-        payload: { msg: "Please Sign In To Add To Wishlist" },
-      });
-      history.push("/auth");
-    }
+      dispatch(addToWishList(book._id)); 
   };
 
   
 
   const getBook = () => {
-    dispatch(recSystem(book._id));
     history.push(`/all/book/${book._id}`);
   };
 
@@ -117,7 +101,7 @@ const Book = ({book }) => {
               </Typography>
             </CardActions>
 
-            <Button variant="outlined" onClick={getBook}  className={classes.button}>
+            <Button variant="outlined" onClick={() => {getBook(); addtofavourite()}}  className={classes.button}>
               Book Details
             </Button>
           </Card>

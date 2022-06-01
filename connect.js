@@ -1,7 +1,7 @@
 const spawn = require('child_process').spawn
 
 var pyspawn = spawn(
-    'python', ['./recommendation.py', 'Engineering Drawing']
+    'python', ['./recommendation.py', '62694517cbbe6d1e633e95e3']
   );
 
 pyspawn.stdout.on('data',(data)=>{
