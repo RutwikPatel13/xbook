@@ -95,7 +95,7 @@ exports.recSystem = async(req,res)=>{
 
 exports.addToWishList = async (req, res) => {
   const { id } = req.params;
-  console.log("id", id)
+  console.log("Rutwik", id)
   var process = spawn('python',["recommendation.py ",id] );
   
   process.stdout.on('data', (data)=> {

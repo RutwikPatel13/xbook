@@ -34,7 +34,7 @@ const BookInfo = ({ match }) => {
   const books = useSelector((state) => state.books);
   const book = useSelector((state) => state.book);
 
-  const filterbooks = useSelector((state) => state.obj);
+  const filterbooks = useSelector((state) => state.books);
   
   const bookId = match.params.bookId;
   const [found] = useState(books.find((bk) => bk._id === bookId) !== undefined);
@@ -54,7 +54,7 @@ const BookInfo = ({ match }) => {
   }, [dispatch]);
 
   
-  
+  console.log("filterbook",filterbooks);
 
   const responsive = {
     superLargeDesktop: {
@@ -459,7 +459,7 @@ const BookInfo = ({ match }) => {
             margin: "0px auto",
           }}
         />
-        {(
+        
           <div
             style={{
               padding: "20px 10px",
@@ -475,20 +475,22 @@ const BookInfo = ({ match }) => {
               autoPlay={true}
               autoPlaySpeed={6000}
             >
-              {
-              filterbooks.map((book) => {
-              <Grid>
-                <Container>
-                  <Book key={book._id} book={book} />
-                </Container>
-              </Grid>
-
-              })
               
-              }
+              
+
+                <Book key = {filterbooks[0]._id} book= {filterbooks[0]}/>
+                <Book key = {filterbooks[1]._id} book= {filterbooks[1]}/>
+                <Book key = {filterbooks[2]._id} book= {filterbooks[2]}/>
+                <Book key = {filterbooks[3]._id} book= {filterbooks[3]}/>
+                <Book key = {filterbooks[4]._id} book= {filterbooks[4]}/>
+              
+                       
+              
+              
+              
             </Carousel>
           </div>
-        )}
+        
       </div>
     </>
   ) : (

@@ -34,6 +34,7 @@ export const createBookAd = (formData, history) => async (dispatch) => {
 export const addToWishList = (id) => async (dispatch) => {
   try {
     const { data } = await api.addToWishList(id);
+    console.log(data);
     dispatch({ type: ADD_FAV, payload: data });
   } catch (error) {}
 };
