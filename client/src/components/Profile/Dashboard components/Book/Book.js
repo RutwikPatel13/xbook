@@ -21,6 +21,8 @@ import useStyles from "./style";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import { addToWishList } from "../../../../actions/books";
+
 import { useDispatch } from "react-redux";
 import { updatedIsSold, deleteaBook } from "../../../../actions/books";
 
@@ -32,7 +34,9 @@ const Book = ({ book }) => {
   const getBook = () => {
     history.push(`/all/book/${book._id}`);
   };
-
+  const addtofavourite = () => {
+    dispatch(addToWishList(book._id)); 
+  };
   const [DeleteOpen, setDeleteOpen] = React.useState(false);
 
   const handleDeleteOpen = () => {
@@ -212,7 +216,7 @@ const Book = ({ book }) => {
           </Typography>
         </CardActions>
 
-        <Button variant="outlined" onClick={getBook} className={classes.button}>
+        <Button variant="outlined" onClick={() => {getBook(); addtofavourite()}} className={classes.button}>
           bookInfo
         </Button>
       </Card>

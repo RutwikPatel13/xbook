@@ -48,8 +48,13 @@ app.use((req, res, next) => {
    next();
 });
 */
+
+app.use(bodyParser.json()); 
 app.use(express.json({ limit: "80mb", extended: true }));
+//app.use(express.bodyParser({limit: '50mb', extended: true}));
 app.use(express.urlencoded({ limit: "80mb", extended: true }));
+
+
 app.use("/books/", require("./routes/books"));
 app.use("/users/", require("./routes/users"));
 

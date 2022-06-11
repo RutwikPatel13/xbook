@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const upload=require('../utils/s3')
+
+//const {uploadFile} = require('../s3')
+
 const {
   getBooks,
   createBookAd,
@@ -13,7 +16,7 @@ const {
 const auth = require("../middleware/auth");
 
 router.get("/all", getBooks);
-router.post("/add", auth,upload.single('selectedFile'), createBookAd);
+router.post("/add", auth,upload.array('selectedFile'), createBookAd);
 router.patch("/:id/addWishList", auth, addToWishList);
 router.patch("/:id/sold", auth, updateIsSold);
 router.delete("/:id", auth, deleteaBook);

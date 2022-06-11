@@ -12,6 +12,8 @@ import {
   WhatsappIcon,
 } from "react-share";
 import LocalOfferIcon from "@material-ui/icons/LocalOffer";
+import Icon from '@mui/material/Icon';
+import VerifiedIcon from '@mui/icons-material/Verified';
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { Container, Typography, Link } from "@material-ui/core";
@@ -37,6 +39,7 @@ const BookInfo = ({ match }) => {
   const filterbooks = useSelector((state) => state.books);
   
   const bookId = match.params.bookId;
+
   const [found] = useState(books.find((bk) => bk._id === bookId) !== undefined);
   const [contact_URL, setContact_URL] = useState("/auth");
   const localUser = JSON.parse(localStorage.getItem("profile"));
@@ -153,6 +156,15 @@ const BookInfo = ({ match }) => {
                   <ul style={{ listStyleType: "none" }} className={classes.list}>
                     <li>
                       Name: <span className={classes.name2}>{book.bookName}</span>
+                      <span className={classes.name2}>
+                        {<VerifiedIcon  color ="primary" style={{
+                    display: "inline",
+                    padding: "1px",
+                    margin: "0 10px 0 0",
+                   }}></VerifiedIcon> && book.legitacy=="legit"} 
+                        
+                        </span>
+                       
                     </li>
 
                     <li>
@@ -181,7 +193,7 @@ const BookInfo = ({ match }) => {
                       Condition Predicted:{" "}
                       <span className={classes.name2}>
                         {book.conditionOfBookPredicted}
-                        {book.conditionOfBookPredicted==''&& condition2
+                        {book.conditionOfBookPredicted==null&& condition2
                         }
                         </span>
                     </li>
@@ -198,7 +210,7 @@ const BookInfo = ({ match }) => {
                         }
                         {book.conditionOfBookPredicted=='bad'&&(book.price*40)/100
                         }
-                        {book.conditionOfBookPredicted==''&&(book.price*60)/100
+                        {book.conditionOfBookPredicted==null&&(book.price*60)/100
                         }
                         
                         {" ("}
@@ -265,6 +277,12 @@ const BookInfo = ({ match }) => {
                     Course:{" "}
                       <span className={classes.name}>
                         {book.course}
+                      </span>
+                    </li>
+                    <li>
+                    Verification status:{" "}
+                      <span className={classes.name}>
+                        {book.legitacy}
                       </span>
                     </li>
                   </ul>

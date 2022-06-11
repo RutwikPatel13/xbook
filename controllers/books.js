@@ -19,19 +19,20 @@ exports.getBooks = async (req, res) => {
 
 exports.createBookAd = async (req, res) => {
   const book = req.body;
-  const { error } = postBookValidator.validate(req.body);
+  //const { error } = postBookValidator.validate(req.body);
 
   console.log(book)
 
   if (!req.userId) return res.status(403).json({ msg: "Unauthorized" });
   try {
-    if (error) {
-      return res.status(400).json({ msg: error.details[0].message });
-    }
+    // if (error) {
+    //   return res.status(400).json({ msgg: error.details[0].message });
+    // }
     const {tags}=req.body
-    const { selectedFile } = req.body;
-    // console.log(req.file)
-    // const img_url=req.file.location
+    //const { selectedFile } = req.body;
+    //console.log("yashhhh",selectedFile);
+    console.log("sdfsfs",book.selectedFile)
+    //const img_url=req.file.location
     const noOfPages = Number(book.noOfPages);
     const price = Number(book.price);
     const mrp = Number(book.mrp);
@@ -41,7 +42,10 @@ exports.createBookAd = async (req, res) => {
       noOfPages: noOfPages,
       price: price,
       // selectedFile:img_url,
-      selectedFile,
+      selectedFile:book.selectedFile[0],
+      Cover2: book.selectedFile[1],
+      Page1: book.selectedFile[2],
+      Page2: book.selectedFile[3],
       mrp: mrp,
       tags,
       owner: req.userId,
@@ -97,6 +101,7 @@ exports.addToWishList = async (req, res) => {
   const { id } = req.params;
   console.log("Rutwik", id)
   var process = spawn('python',["recommendation.py ",id] );
+  //var process1 = spawn('python',["ocr.py ",id] );
   
   process.stdout.on('data', (data)=> {
     obj=[]
@@ -107,22 +112,30 @@ exports.addToWishList = async (req, res) => {
     x.pop()
     iter=0
     //return res.json(books)
-    console.log("x", x)
+    //console.log("x", x)
     
     x.forEach(async(book2)=>{
       const book1 = await Book.findById(book2)
       
       obj.push(book1)
-      
+      console.log(book1)
       iter+=1
       if(iter==5){
-        console.log("obj", obj)
+        //console.log("obj", obj)
         return res.json(obj)
+        
       }
     })
     
 } )  // return res.json({status:"ok",})
+/*process1.stdout.on('data', (data)=> {
+  books=''
+  books = data.toString()
+  return res.json(books)
+} )*/
 }
+
+  
 
 exports.updateIsSold = async (req, res) => {
   try {

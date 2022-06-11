@@ -55,6 +55,7 @@ const initialState = {
   isbn: "",
   university: "",
   course: "",
+  
 };
 
 const PostAdForm = () => {
@@ -66,14 +67,56 @@ const PostAdForm = () => {
   const [err, setErr] = useState(false);
   const book = useSelector((state) => state.book);
   const compress = new Compress();
-  const addImage = async (e) => {
+
+  const [bookpictures, setbookpictures] = useState([
+    "https://secondhandbookimages.s3.ap-south-1.amazonaws.com/2022-01-11T10%3A37%3A40.836Z-AP1_SWATI_2016_1.jpg",
+    "https://secondhandbookimages.s3.ap-south-1.amazonaws.com/2022-01-11T10%3A37%3A40.841Z-AP1_SWATI_2016_2.jpg",
+  "https://secondhandbookimages.s3.ap-south-1.amazonaws.com/2022-01-11T10%3A37%3A40.853Z-AP1_SWATI_2016_3.jpg",
+  "https://secondhandbookimages.s3.ap-south-1.amazonaws.com/2022-01-11T10%3A37%3A40.869Z-AP1_SWATI_2016_4.jpg"]);
+
+  const addImage1 = async (e) => {
     const files = [...e.target.files];
     const imageData = await compress.compress(files, {
       size: 0.2,
-      quality: 0.9,
+      quality: 0.2,
     });
     const imageFile = imageData[0].prefix + imageData[0].data;
-    setBookData({ ...bookData, selectedFile: imageFile });
+    //setbookpictures([...bookpictures, imageFile]);
+    console.log(bookpictures);
+    setBookData({ ...bookData, selectedFile: bookpictures });
+  };
+  const addImage2 = async (e) => {
+    const files = [...e.target.files];
+    const imageData = await compress.compress(files, {
+      size: 0.2,
+      quality: 0.2,
+    });
+    const imageFile = imageData[0].prefix + imageData[0].data;
+    //setbookpictures([...bookpictures, imageFile]);
+    console.log(bookpictures);
+    setBookData({ ...bookData, selectedFile: bookpictures });
+  };
+  const addImage3 = async (e) => {
+    const files = [...e.target.files];
+    const imageData = await compress.compress(files, {
+      size: 0.2,
+      quality: 0.2,
+    });
+    const imageFile = imageData[0].prefix + imageData[0].data;
+    //setbookpictures([...bookpictures, imageFile]);
+    console.log(bookpictures);
+    setBookData({ ...bookData, selectedFile: bookpictures });
+  };
+  const addImage4 = async (e) => {
+    const files = [...e.target.files];
+    const imageData = await compress.compress(files, {
+      size: 0.2,
+      quality: 0.2,
+    });
+    const imageFile = imageData[0].prefix + imageData[0].data;
+    //setbookpictures([...bookpictures, imageFile]);
+    console.log(bookpictures);
+    setBookData({ ...bookData, selectedFile: bookpictures });
   };
 
   const handleChange = (e) => {
@@ -366,7 +409,7 @@ const PostAdForm = () => {
                         className={classes.input}
                         id="icon-button-file"
                         type="file"
-                        onChange={addImage}
+                        onChange={addImage1}
                         multiple
                       />
                       
@@ -392,7 +435,7 @@ const PostAdForm = () => {
                         className={classes.input}
                         id="icon-button-file"
                         type="file"
-                        onChange={addImage}
+                        onChange={addImage2}
                         multiple
                       />
 
@@ -418,7 +461,7 @@ const PostAdForm = () => {
                         className={classes.input}
                         id="icon-button-file"
                         type="file"
-                        onChange={addImage}
+                        onChange={addImage1}
                         multiple
                       />
 
@@ -444,7 +487,7 @@ const PostAdForm = () => {
                         className={classes.input}
                         id="icon-button-file"
                         type="file"
-                        onChange={addImage}
+                        onChange={addImage1}
                         multiple
                       />
 

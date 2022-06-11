@@ -1,0 +1,27 @@
+const mongoose = require("mongoose");
+
+const BookSchema = mongoose.Schema({
+  selectedFile: {
+    type: String,
+    required: true,
+  },
+  Cover2: {
+    //Cover2 of the book
+    type: String,
+    required: true,
+  },
+  Page1: {
+    //Page1 of the book
+    type: String,
+    required: true,
+  },
+  Page2: {
+    //Page2 of the book
+    type: String,
+    required: true,
+  },
+});
+
+const BookImage = mongoose.model("BookImages", BookSchema);
+
+module.exports = BookImage;

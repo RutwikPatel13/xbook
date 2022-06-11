@@ -115,22 +115,23 @@ const BookSchema = mongoose.Schema({
   Cover2: {
     //Cover2 of the book
     type: String,
-    required: false,
   },
   Page1: {
     //Page1 of the book
     type: String,
-    required: false,
   },
   Page2: {
     //Page2 of the book
     type: String,
-    required: false,
   },
   course: {
     //course of the book
     type: String,
-    required: true,
+  },
+  legitacy: {
+    //course of the book
+    type: String, 
+    default: "..."
   },
 
 });
