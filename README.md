@@ -3,13 +3,13 @@
 
 ## Table of Content:
 
-- [About The App](#about-the-app)
+- [About The App](#about-the-Website)
 - [Screenshots](#screenshots)
 - [Technologies](#technologies)
 - [Status](#status)
 - [Credits](#credits)
 
-## About The App
+## About The Website
 The main objective of the XBook is to create an online books reselling store which helps the user to sell or purchase books based on title, university, boards at their desired location.
 The present system is the manual one hence all the information about the books and their subject wise details will be maintained in these sites. 
 This website will help students(or anyone) to sell and buying books with some key feature such as Search books, Recommendation model that recommends books based on cureent choice, Profile page, Chat module with seller, Book details page with four different images of books.
