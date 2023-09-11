@@ -3,7 +3,7 @@
 
 ## Table of Content:
 
-- [About The App](#about-the-Website)
+- [About The Website](#about-the-Website)
 - [Screenshots](#screenshots)
 - [Technologies](#technologies)
 - [Status](#status)
